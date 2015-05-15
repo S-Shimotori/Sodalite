@@ -13,6 +13,8 @@
 		B5B939331B0646DB00DC7BE7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B939321B0646DB00DC7BE7 /* Images.xcassets */; };
 		B5B939361B0646DB00DC7BE7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5B939341B0646DB00DC7BE7 /* LaunchScreen.xib */; };
 		B5B939421B0646DB00DC7BE7 /* SodaliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B939411B0646DB00DC7BE7 /* SodaliteTests.swift */; };
+		B5C978231B06495A009527EC /* SodaliteGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C978221B06495A009527EC /* SodaliteGraphView.swift */; };
+		B5C978251B064C1B009527EC /* SodaliteBarGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C978241B064C1B009527EC /* SodaliteBarGraphView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		B5B9393B1B0646DB00DC7BE7 /* SodaliteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SodaliteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B939401B0646DB00DC7BE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5B939411B0646DB00DC7BE7 /* SodaliteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SodaliteTests.swift; sourceTree = "<group>"; };
+		B5C978221B06495A009527EC /* SodaliteGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SodaliteGraphView.swift; sourceTree = "<group>"; };
+		B5C978241B064C1B009527EC /* SodaliteBarGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SodaliteBarGraphView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 		B5B939281B0646DB00DC7BE7 /* Sodalite */ = {
 			isa = PBXGroup;
 			children = (
+				B5C978211B0648FA009527EC /* Classes */,
 				B5B9392B1B0646DB00DC7BE7 /* AppDelegate.swift */,
 				B5B9392D1B0646DB00DC7BE7 /* ViewController.swift */,
 				B5B9392F1B0646DB00DC7BE7 /* Main.storyboard */,
@@ -110,6 +115,15 @@
 				B5B939401B0646DB00DC7BE7 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B5C978211B0648FA009527EC /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B5C978221B06495A009527EC /* SodaliteGraphView.swift */,
+				B5C978241B064C1B009527EC /* SodaliteBarGraphView.swift */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,6 +226,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5C978251B064C1B009527EC /* SodaliteBarGraphView.swift in Sources */,
+				B5C978231B06495A009527EC /* SodaliteGraphView.swift in Sources */,
 				B5B9392E1B0646DB00DC7BE7 /* ViewController.swift in Sources */,
 				B5B9392C1B0646DB00DC7BE7 /* AppDelegate.swift in Sources */,
 			);
@@ -409,6 +425,7 @@
 				B5B939471B0646DB00DC7BE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B5B939481B0646DB00DC7BE7 /* Build configuration list for PBXNativeTarget "SodaliteTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +434,7 @@
 				B5B9394A1B0646DB00DC7BE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
