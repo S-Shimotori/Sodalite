@@ -1,5 +1,5 @@
 //
-//  SodaliteBarGraphView.swift
+//  SODGraphViewWithScale.swift
 //  Sodalite
 //
 //  Created by S-Shimotori on 5/16/15.
@@ -8,8 +8,11 @@
 
 import UIKit
 
-class SodaliteBarGraphView: SodaliteGraphView {
+class SODGraphViewWithScale: UIView {
 
+    var graphView: UIView?
+    var scaleView: UIView?
+    var hasScale = true
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

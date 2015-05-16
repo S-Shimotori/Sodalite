@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var sodaliteBarGraphView: SodaliteBarGraphView!
+    @IBOutlet weak var sodaliteBarGraphView: SODBarGraphView!
     
     
     override func viewDidLoad() {
