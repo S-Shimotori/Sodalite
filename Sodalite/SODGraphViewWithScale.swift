@@ -15,6 +15,11 @@ class SODGraphViewWithScale: UIView {
     var horizontalAxisView = UIView()
     
     var hasVerticalAxis = true
+    
+    var horizontalAxisLabelTexts = [String]()
+    var horizontalAxisAttributes = [NSObject : AnyObject]()
+    
+
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

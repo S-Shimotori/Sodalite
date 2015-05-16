@@ -11,15 +11,20 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var sodaliteBarGraphView: SODBarGraphView!
+
+    let horizontalTexts = ["Sun", "Mon", "Tue"]
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    override func viewDidLayoutSubviews() {
+        sodaliteBarGraphView.hasVerticalAxis = false
+        sodaliteBarGraphView.horizontalAxisLabelTexts = horizontalTexts
+        sodaliteBarGraphView.horizontalAxisAttributes = [
+            NSFontAttributeName : UIFont.systemFontOfSize(10.0)
+        ]
         
-        sodaliteBarGraphView.backgroundColor = .grayColor()
-        sodaliteBarGraphView.graphView.backgroundColor = .whiteColor()
-        sodaliteBarGraphView.verticalAxisView.backgroundColor = .redColor()
+        //sodaliteBarGraphView.backgroundColor = .grayColor()
+        sodaliteBarGraphView.graphView.backgroundColor = UIColor.brownColor()
+        
+        //sodaliteBarGraphView.verticalAxisView.backgroundColor = .redColor()
         sodaliteBarGraphView.horizontalAxisView.backgroundColor = .blueColor()
         sodaliteBarGraphView.draw()
     }
