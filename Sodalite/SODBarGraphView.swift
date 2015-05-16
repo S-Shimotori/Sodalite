@@ -10,14 +10,24 @@ import UIKit
 
 class SODBarGraphView: SODGraphViewWithScale, SODDrawable {
     func draw() {
+        resetView()
         
+        horizontalAxisView.frame = CGRectMake(0, 50, frame.width, 50)
+        
+        if hasVerticalAxis {
+            graphView.frame = CGRectMake(50, 0, frame.width - 50, 50)
+            verticalAxisView.frame = CGRectMake(0, 0, 50, 50)
+            addSubview(verticalAxisView)
+        } else {
+            graphView.frame = CGRectMake(0, 0, frame.width, 50)
+        }
+        
+        addSubview(horizontalAxisView)
+        addSubview(graphView)
     }
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
+    
+    private func resetView() {
+        subviews.map{$0.removeFromSuperview()}
     }
-    */
 
 }

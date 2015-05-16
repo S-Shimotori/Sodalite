@@ -10,9 +10,11 @@ import UIKit
 
 class SODGraphViewWithScale: UIView {
 
-    var graphView: UIView?
-    var scaleView: UIView?
-    var hasScale = true
+    var graphView = UIView()
+    var verticalAxisView = UIView()
+    var horizontalAxisView = UIView()
+    
+    var hasVerticalAxis = true
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

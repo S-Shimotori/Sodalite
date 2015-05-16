@@ -18,6 +18,10 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         sodaliteBarGraphView.backgroundColor = .grayColor()
+        sodaliteBarGraphView.graphView.backgroundColor = .whiteColor()
+        sodaliteBarGraphView.verticalAxisView.backgroundColor = .redColor()
+        sodaliteBarGraphView.horizontalAxisView.backgroundColor = .blueColor()
+        sodaliteBarGraphView.draw()
     }
 
     override func didReceiveMemoryWarning() {
