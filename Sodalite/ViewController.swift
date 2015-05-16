@@ -30,11 +30,6 @@ class ViewController: UIViewController {
         sodaliteBarGraphView.horizontalAxisAttributes = [
             NSFontAttributeName : UIFont.systemFontOfSize(15.0)
         ]
-        
-        sodaliteBarGraphView.backgroundColor = .grayColor()
-        sodaliteBarGraphView.graphView.backgroundColor = UIColor.brownColor()
-        sodaliteBarGraphView.verticalAxisView.backgroundColor = .redColor()
-        sodaliteBarGraphView.horizontalAxisView.backgroundColor = .blueColor()
         sodaliteBarGraphView.draw()
     }
 
