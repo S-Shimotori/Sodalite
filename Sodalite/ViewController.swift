@@ -24,6 +24,7 @@ class ViewController: UIViewController {
             NSFontAttributeName : UIFont.systemFontOfSize(10.0)
         ]
         sodaliteBarGraphView.verticalAxisScaleMax = 24
+        sodaliteBarGraphView.verticalAxisScaleIncrement = 6
         
         sodaliteBarGraphView.horizontalAxisLabelTexts = horizontalTexts
         sodaliteBarGraphView.horizontalAxisAttributes = [

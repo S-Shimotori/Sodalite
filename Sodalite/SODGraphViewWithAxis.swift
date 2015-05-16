@@ -62,21 +62,53 @@ class SODGraphViewWithAxis: UIView {
         
         if hasVerticalAxis {
             if hasVerticalAxisScale {
+                let maxValueOfData = maxElement(data)
+                var scaleLabels = [UILabel]()
+                
                 if let verticalAxisScaleMax = verticalAxisScaleMax {
                     let label = UILabel()
                     label.attributedText = NSAttributedString(string: "\(verticalAxisScaleMax)", attributes: verticalAxisAttributes)
                     label.sizeToFit()
-                    let maxValueOfData = minElement(data)
                     if maxValueOfData <= verticalAxisScaleMax {
                         label.frame.origin = CGPointMake(0, 0)
                     } else {
                         label.frame.origin.x = 0
-                        label.center.y = (frame.height - horizontalAxisView.frame.height) * CGFloat(verticalAxisScaleMax) / CGFloat(maxValueOfData)
+                        label.center.y = (frame.height - horizontalAxisView.frame.height) * (1 - CGFloat(verticalAxisScaleMax) / CGFloat(maxValueOfData))
                     }
+                    scaleLabels.append(label)
                     verticalAxisView.addSubview(label)
                 }
-            } else {
                 
+                if let verticalAxisScaleIncrement = verticalAxisScaleIncrement {
+                    let maxScaleValue: Double!
+                    if let verticalAxisScaleMax = verticalAxisScaleMax {
+                        maxScaleValue = max(verticalAxisScaleMax, maxValueOfData)
+                    } else {
+                        maxScaleValue = maxValueOfData
+                    }
+                    var scaleValue = verticalAxisScaleIncrement
+                    
+                    while scaleValue < maxScaleValue {
+                        let label = UILabel()
+                        label.attributedText = NSAttributedString(string: "\(scaleValue)", attributes: verticalAxisAttributes)
+                        label.sizeToFit()
+                        label.frame.origin.x = 0
+                        label.center.y = (frame.height - horizontalAxisView.frame.height) * (1 - CGFloat(scaleValue) / CGFloat(maxScaleValue))
+                        scaleLabels.append(label)
+                        verticalAxisView.addSubview(label)
+                        scaleValue += verticalAxisScaleIncrement
+                    }
+                }
+                
+                if verticalAxisScaleIncrement != nil {
+                    var maxScaleLabelWidth = CGFloat.min
+                    for label in scaleLabels {
+                        maxScaleLabelWidth = max(maxScaleLabelWidth, label.frame.width)
+                    }
+                    for label in scaleLabels {
+                        label.frame.origin.x = maxScaleLabelWidth - label.frame.width
+                    }
+                }
             }
             verticalAxisView.sizeToFitSubviews()
             verticalAxisView.frame.origin = CGPointMake(0, 0)
