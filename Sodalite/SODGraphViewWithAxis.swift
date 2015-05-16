@@ -44,15 +44,18 @@ class SODGraphViewWithAxis: UIView {
     }
     
     func drawScale() {
-        for i in 0..<horizontalAxisLabelTexts.count {
-            let text = horizontalAxisLabelTexts[i]
-            
+        
+        //to set label.frame after calculating verticalAxisView.frame
+        var horizontalAxisLabels = [UILabel]()
+        
+        for text in horizontalAxisLabelTexts {
             let label = UILabel()
             label.attributedText = NSAttributedString(string: text, attributes: horizontalAxisAttributes)
             label.sizeToFit()
-            label.center.x = frame.width * CGFloat(i * 2 + 1) / CGFloat(horizontalAxisLabelTexts.count * 2)
-            label.frame.origin.y = 0
+            //set temporary x-coordinate
+            label.frame.origin = CGPointMake(0, 0)
             
+            horizontalAxisLabels.append(label)
             horizontalAxisView.addSubview(label)
         }
         horizontalAxisView.sizeToFitSubviews()
@@ -85,6 +88,9 @@ class SODGraphViewWithAxis: UIView {
         }
         
         horizontalAxisView.frame = CGRectMake(verticalAxisView.frame.width, frame.height - horizontalAxisView.frame.height, frame.width - verticalAxisView.frame.width, horizontalAxisView.frame.height)
+        for i in 0..<horizontalAxisLabels.count {
+            horizontalAxisLabels[i].center.x = horizontalAxisView.frame.width * CGFloat(i * 2 + 1) / CGFloat(horizontalAxisLabelTexts.count * 2)
+        }
         addSubview(horizontalAxisView)
         addSubview(graphView)
     }
