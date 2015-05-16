@@ -11,10 +11,30 @@ import UIKit
 class SODGraphViewWithScale: UIView {
 
     var graphView = UIView()
-    var verticalAxisView = UIView()
-    var horizontalAxisView = UIView()
+    
+    class SODAxisView: UIView {
+        func sizeToFitSubviews() {
+            var width: CGFloat = 0
+            var height: CGFloat = 0
+            
+            for subview in subviews {
+                width = max(width, subview.frame.origin.x + subview.frame.width)
+                height = max(height, subview.frame.origin.y + subview.frame.height)
+            }
+            
+            frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, width, height)
+        }
+    }
+    var verticalAxisView = SODAxisView()
+    var horizontalAxisView = SODAxisView()
+    
+    var data = [Double]()
     
     var hasVerticalAxis = true
+    var hasVerticalAxisScale = true
+    var verticalAxisScaleMax: Double?
+    var verticalAxisScaleIncrement: Double?
+    var verticalAxisAttributes = [NSObject : AnyObject]()
     
     var horizontalAxisLabelTexts = [String]()
     var horizontalAxisAttributes = [NSObject : AnyObject]()
