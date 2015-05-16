@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SODBarGraphView: SODGraphViewWithScale, SODDrawable {
+class SODBarGraphView: SODGraphViewWithAxis, SODDrawable {
     
     func draw() {
         resetView()

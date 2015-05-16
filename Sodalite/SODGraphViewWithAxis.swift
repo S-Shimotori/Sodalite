@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SODGraphViewWithScale: UIView {
+class SODGraphViewWithAxis: UIView {
 
     var graphView = UIView()
     
