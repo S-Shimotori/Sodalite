@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B50B0AE51B06EDA300C1A314 /* SODGraphViewWithAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50B0AE41B06EDA300C1A314 /* SODGraphViewWithAxis.swift */; };
+		B5A7AAD91B07A98200AB75C4 /* SODAxisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A7AAD81B07A98200AB75C4 /* SODAxisView.swift */; };
+		B5A7AADB1B07ADEC00AB75C4 /* SODAxisLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A7AADA1B07ADEC00AB75C4 /* SODAxisLineView.swift */; };
 		B5B9392C1B0646DB00DC7BE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B9392B1B0646DB00DC7BE7 /* AppDelegate.swift */; };
 		B5B9392E1B0646DB00DC7BE7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B9392D1B0646DB00DC7BE7 /* ViewController.swift */; };
 		B5B939311B0646DB00DC7BE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5B9392F1B0646DB00DC7BE7 /* Main.storyboard */; };
@@ -30,6 +32,8 @@
 
 /* Begin PBXFileReference section */
 		B50B0AE41B06EDA300C1A314 /* SODGraphViewWithAxis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SODGraphViewWithAxis.swift; sourceTree = "<group>"; };
+		B5A7AAD81B07A98200AB75C4 /* SODAxisView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SODAxisView.swift; sourceTree = "<group>"; };
+		B5A7AADA1B07ADEC00AB75C4 /* SODAxisLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SODAxisLineView.swift; sourceTree = "<group>"; };
 		B5B939261B0646DB00DC7BE7 /* Sodalite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sodalite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B9392A1B0646DB00DC7BE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5B9392B1B0646DB00DC7BE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +129,8 @@
 				B5C978221B06495A009527EC /* SODDrawable.swift */,
 				B5C978241B064C1B009527EC /* SODBarGraphView.swift */,
 				B50B0AE41B06EDA300C1A314 /* SODGraphViewWithAxis.swift */,
+				B5A7AAD81B07A98200AB75C4 /* SODAxisView.swift */,
+				B5A7AADA1B07ADEC00AB75C4 /* SODAxisLineView.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -231,8 +237,10 @@
 			files = (
 				B5C978251B064C1B009527EC /* SODBarGraphView.swift in Sources */,
 				B5C978231B06495A009527EC /* SODDrawable.swift in Sources */,
+				B5A7AAD91B07A98200AB75C4 /* SODAxisView.swift in Sources */,
 				B50B0AE51B06EDA300C1A314 /* SODGraphViewWithAxis.swift in Sources */,
 				B5B9392E1B0646DB00DC7BE7 /* ViewController.swift in Sources */,
+				B5A7AADB1B07ADEC00AB75C4 /* SODAxisLineView.swift in Sources */,
 				B5B9392C1B0646DB00DC7BE7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

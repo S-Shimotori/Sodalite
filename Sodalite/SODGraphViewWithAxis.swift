@@ -11,48 +11,6 @@ import UIKit
 class SODGraphViewWithAxis: UIView {
 
     var graphView = UIView()
-    
-    class SODAxisView: UIView {
-        var scaleValues = [Double]()
-        var axisLine: SODAxisLineView?
-        func sizeToFitSubviews() {
-            var width: CGFloat = 0
-            var height: CGFloat = 0
-            
-            for subview in subviews {
-                width = max(width, subview.frame.origin.x + subview.frame.width)
-                height = max(height, subview.frame.origin.y + subview.frame.height)
-            }
-            
-            frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, width, height)
-        }
-    }
-    
-    class SODAxisLineView: UIView {
-        var lineWidth: CGFloat = 1
-        var lineColor = UIColor.blackColor()
-    }
-    class SODHorizontalAxisLineView: SODAxisLineView {
-        override func drawRect(rect: CGRect) {
-            let context = UIGraphicsGetCurrentContext()
-            lineColor.set()
-            CGContextSetLineWidth(context, lineWidth)
-            CGContextMoveToPoint(context, 0, 0)
-            CGContextAddLineToPoint(context, rect.width, 0)
-            CGContextStrokePath(context)
-        }
-    }
-    class SODVerticalAxisLineView: SODAxisLineView {
-        override func drawRect(rect: CGRect) {
-            let context = UIGraphicsGetCurrentContext()
-            lineColor.set()
-            CGContextSetLineWidth(context, lineWidth)
-            CGContextMoveToPoint(context, rect.width, 0)
-            CGContextAddLineToPoint(context, rect.width, rect.height)
-            CGContextStrokePath(context)
-        }
-    }
-    
     var verticalAxisView = SODAxisView()
     var horizontalAxisView = SODAxisView()
     
