@@ -79,15 +79,30 @@ class SODGraphViewWithAxis: UIView {
                 
             }
             verticalAxisView.sizeToFitSubviews()
-            verticalAxisView.frame = CGRectMake(0, 0, verticalAxisView.frame.width, verticalAxisView.frame.height)
+            verticalAxisView.frame.origin = CGPointMake(0, 0)
             addSubview(verticalAxisView)
             
-            graphView.frame = CGRectMake(verticalAxisView.frame.width, 0, frame.width - verticalAxisView.frame.width, frame.height - horizontalAxisView.frame.height)
+            graphView.frame = CGRectMake(
+                verticalAxisView.frame.width,
+                0,
+                frame.width - verticalAxisView.frame.width,
+                frame.height - horizontalAxisView.frame.height
+            )
         } else {
-            graphView.frame = CGRectMake(0, 0, frame.width, frame.height - horizontalAxisView.frame.height)
+            graphView.frame = CGRectMake(
+                0,
+                0,
+                frame.width,
+                frame.height - horizontalAxisView.frame.height
+            )
         }
         
-        horizontalAxisView.frame = CGRectMake(verticalAxisView.frame.width, frame.height - horizontalAxisView.frame.height, frame.width - verticalAxisView.frame.width, horizontalAxisView.frame.height)
+        horizontalAxisView.frame = CGRectMake(
+            verticalAxisView.frame.width,
+            frame.height - horizontalAxisView.frame.height,
+            frame.width - verticalAxisView.frame.width,
+            horizontalAxisView.frame.height
+        )
         for i in 0..<horizontalAxisLabels.count {
             horizontalAxisLabels[i].center.x = horizontalAxisView.frame.width * CGFloat(i * 2 + 1) / CGFloat(horizontalAxisLabelTexts.count * 2)
         }
