@@ -9,11 +9,36 @@
 import UIKit
 
 class SODAxisLineView: UIView {
-    var lineWidth: CGFloat = 1
+    static let defaultLineWidth: CGFloat = 1
+    
+    var lineWidth: CGFloat = defaultLineWidth
     var lineColor = UIColor.blackColor()
+
+    init(frame: CGRect, lineWidth: CGFloat?, lineColor: UIColor?) {
+        if let lineWidth = lineWidth {
+            self.lineWidth = lineWidth
+        }
+        if let lineColor = lineColor {
+            self.lineColor = lineColor
+        }
+        super.init(frame: frame)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 }
 
 class SODHorizontalAxisLineView: SODAxisLineView {
+    
+    override init(frame: CGRect, lineWidth: CGFloat?, lineColor: UIColor?) {
+        super.init(frame: frame, lineWidth: lineWidth, lineColor: lineColor)
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     override func drawRect(rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
         lineColor.set()
@@ -25,6 +50,15 @@ class SODHorizontalAxisLineView: SODAxisLineView {
 }
 
 class SODVerticalAxisLineView: SODAxisLineView {
+    
+    override init(frame: CGRect, lineWidth: CGFloat?, lineColor: UIColor?) {
+        super.init(frame: frame, lineWidth: lineWidth, lineColor: lineColor)
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     override func drawRect(rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
         lineColor.set()

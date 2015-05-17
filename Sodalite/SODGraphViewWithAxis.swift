@@ -18,6 +18,8 @@ class SODGraphViewWithAxis: UIView {
     //data to draw graph
     var data = [Double]()
     
+    var axisLineWidth: CGFloat?
+    var axisLineColor: UIColor?
     var hasVerticalAxis = true
     var hasVerticalAxisScale = true
     var verticalAxisScaleMax: Double?
@@ -41,13 +43,13 @@ class SODGraphViewWithAxis: UIView {
             label.attributedText = NSAttributedString(string: text, attributes: horizontalAxisAttributes)
             label.sizeToFit()
             //set temporary x-coordinate
-            label.frame.origin = CGPointMake(0, 0)
+            label.frame.origin.y = axisLineWidth ?? SODAxisLineView.defaultLineWidth
             
             horizontalAxisLabels.append(label)
             horizontalAxisView.addSubview(label)
         }
         horizontalAxisView.sizeToFitSubviews()
-        horizontalAxisView.frame.size.width += 1
+        horizontalAxisView.frame.size.width += axisLineWidth ?? SODAxisLineView.defaultLineWidth
         
         if hasVerticalAxis {
             var paddingTop: CGFloat?
@@ -114,15 +116,17 @@ class SODGraphViewWithAxis: UIView {
             }
             verticalAxisView.sizeToFitSubviews()
             verticalAxisView.frame.origin = CGPointMake(0, 0)
-            verticalAxisView.frame.size.width += 1
-            verticalAxisView.frame.size.height = frame.height - horizontalAxisView.frame.height
+            verticalAxisView.frame.size.width += axisLineWidth ?? SODAxisLineView.defaultLineWidth
+            verticalAxisView.frame.size.height = frame.height - horizontalAxisView.frame.height + (axisLineWidth ?? SODAxisLineView.defaultLineWidth)
             addSubview(verticalAxisView)
             
             verticalAxisView.axisLine = SODVerticalAxisLineView(frame: CGRectMake(
-                verticalAxisView.frame.width,
+                verticalAxisView.frame.width - (axisLineWidth ?? SODAxisLineView.defaultLineWidth),
                 paddingTop ?? 0,
-                1,
-                verticalAxisView.frame.height - (paddingTop ?? 0)))
+                axisLineWidth ?? SODAxisLineView.defaultLineWidth,
+                verticalAxisView.frame.height - (paddingTop ?? 0)),
+                lineWidth: axisLineWidth, lineColor: axisLineColor
+            )
             verticalAxisView.addSubview(verticalAxisView.axisLine!)
             
             horizontalAxisView.frame = CGRectMake(
@@ -157,7 +161,12 @@ class SODGraphViewWithAxis: UIView {
         }
         
         //draw axis lines
-        horizontalAxisView.axisLine = SODHorizontalAxisLineView(frame: CGRectMake(0, 0, horizontalAxisView.frame.width, 1))
+        horizontalAxisView.axisLine = SODHorizontalAxisLineView(frame:CGRectMake(
+            0,
+            0,
+            horizontalAxisView.frame.width,
+            axisLineWidth ?? SODAxisLineView.defaultLineWidth),
+            lineWidth: axisLineWidth, lineColor: axisLineColor)
         horizontalAxisView.addSubview(horizontalAxisView.axisLine!)
         
         addSubview(horizontalAxisView)

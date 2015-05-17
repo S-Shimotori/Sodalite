@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         sodaliteBarGraphView.data = data
         
+        sodaliteBarGraphView.axisLineWidth = 10
+        
         sodaliteBarGraphView.hasVerticalAxis = true
         sodaliteBarGraphView.hasVerticalAxisScale = true
         sodaliteBarGraphView.verticalAxisAttributes = [
