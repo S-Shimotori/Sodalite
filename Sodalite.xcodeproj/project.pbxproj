@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B50B0AE51B06EDA300C1A314 /* SODGraphViewWithAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50B0AE41B06EDA300C1A314 /* SODGraphViewWithAxis.swift */; };
+		B5113FE71B08CD210070E687 /* SODGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5113FE61B08CD210070E687 /* SODGraphView.swift */; };
 		B5A7AAD91B07A98200AB75C4 /* SODAxisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A7AAD81B07A98200AB75C4 /* SODAxisView.swift */; };
 		B5A7AADB1B07ADEC00AB75C4 /* SODAxisLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A7AADA1B07ADEC00AB75C4 /* SODAxisLineView.swift */; };
 		B5B9392C1B0646DB00DC7BE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B9392B1B0646DB00DC7BE7 /* AppDelegate.swift */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		B50B0AE41B06EDA300C1A314 /* SODGraphViewWithAxis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SODGraphViewWithAxis.swift; sourceTree = "<group>"; };
+		B5113FE61B08CD210070E687 /* SODGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SODGraphView.swift; sourceTree = "<group>"; };
 		B5A7AAD81B07A98200AB75C4 /* SODAxisView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SODAxisView.swift; sourceTree = "<group>"; };
 		B5A7AADA1B07ADEC00AB75C4 /* SODAxisLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SODAxisLineView.swift; sourceTree = "<group>"; };
 		B5B939261B0646DB00DC7BE7 /* Sodalite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sodalite.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +133,7 @@
 				B50B0AE41B06EDA300C1A314 /* SODGraphViewWithAxis.swift */,
 				B5A7AAD81B07A98200AB75C4 /* SODAxisView.swift */,
 				B5A7AADA1B07ADEC00AB75C4 /* SODAxisLineView.swift */,
+				B5113FE61B08CD210070E687 /* SODGraphView.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5113FE71B08CD210070E687 /* SODGraphView.swift in Sources */,
 				B5C978251B064C1B009527EC /* SODBarGraphView.swift in Sources */,
 				B5C978231B06495A009527EC /* SODDrawable.swift in Sources */,
 				B5A7AAD91B07A98200AB75C4 /* SODAxisView.swift in Sources */,

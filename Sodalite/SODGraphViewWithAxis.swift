@@ -8,15 +8,11 @@
 
 import UIKit
 
-class SODGraphViewWithAxis: UIView {
+class SODGraphViewWithAxis: SODGraphView {
 
-    //contains graph and axises
-    var graphView = UIView()
+    //contains axises
     var verticalAxisView = SODAxisView()
     var horizontalAxisView = SODAxisView()
-    
-    //data to draw graph
-    var data = [Double]()
     
     var axisLineWidth: CGFloat?
     var axisLineColor: UIColor?
@@ -28,10 +24,6 @@ class SODGraphViewWithAxis: UIView {
     
     var horizontalAxisLabelTexts = [String]()
     var horizontalAxisAttributes = [NSObject : AnyObject]()
-    
-    func resetView() {
-        subviews.map{$0.removeFromSuperview()}
-    }
     
     func drawScale() {
         let axisLineWidth: CGFloat!
@@ -174,7 +166,11 @@ class SODGraphViewWithAxis: UIView {
         horizontalAxisView.addSubview(horizontalAxisView.axisLine!)
         
         addSubview(horizontalAxisView)
-        addSubview(graphView)
+    }
+    
+    override func draw() {
+        super.draw()
+        drawScale()
     }
 
 }

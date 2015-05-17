@@ -8,11 +8,10 @@
 
 import UIKit
 
-class SODBarGraphView: SODGraphViewWithAxis, SODDrawable {
+class SODBarGraphView: SODGraphViewWithAxis {
     
-    func draw() {
-        resetView()
-        drawScale()
+    override func draw() {
+        super.draw()
     }
 
 }
