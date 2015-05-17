@@ -10,10 +10,12 @@ import UIKit
 
 class SODGraphViewWithAxis: UIView {
 
+    //contains graph and axises
     var graphView = UIView()
     var verticalAxisView = SODAxisView()
     var horizontalAxisView = SODAxisView()
     
+    //data to draw graph
     var data = [Double]()
     
     var hasVerticalAxis = true
@@ -48,11 +50,15 @@ class SODGraphViewWithAxis: UIView {
         horizontalAxisView.frame.size.width += 1
         
         if hasVerticalAxis {
+            
             if hasVerticalAxisScale {
+                //set scale to vertical axis
+                
                 let maxValueOfData = maxElement(data)
                 var scaleLabels = [UILabel]()
                 
                 if let verticalAxisScaleMax = verticalAxisScaleMax {
+                    //set max scale to vertical axis
                     let label = UILabel()
                     label.attributedText = NSAttributedString(string: "\(verticalAxisScaleMax)", attributes: verticalAxisAttributes)
                     label.sizeToFit()
@@ -67,26 +73,28 @@ class SODGraphViewWithAxis: UIView {
                 }
                 
                 if let verticalAxisScaleIncrement = verticalAxisScaleIncrement {
-                    let maxScaleValue: Double!
+                    //set scale to vertical axis
+                    let maxValueOfScale: Double!
                     if let verticalAxisScaleMax = verticalAxisScaleMax {
-                        maxScaleValue = max(verticalAxisScaleMax, maxValueOfData)
+                        maxValueOfScale = max(verticalAxisScaleMax, maxValueOfData)
                     } else {
-                        maxScaleValue = maxValueOfData
+                        maxValueOfScale = maxValueOfData
                     }
-                    var scaleValue = verticalAxisScaleIncrement
                     
-                    while scaleValue < maxScaleValue {
+                    var scaleValue = verticalAxisScaleIncrement
+                    while scaleValue < maxValueOfScale {
                         let label = UILabel()
                         label.attributedText = NSAttributedString(string: "\(scaleValue)", attributes: verticalAxisAttributes)
                         label.sizeToFit()
                         label.frame.origin.x = 0
-                        label.center.y = (frame.height - horizontalAxisView.frame.height) * (1 - CGFloat(scaleValue) / CGFloat(maxScaleValue))
+                        label.center.y = (frame.height - horizontalAxisView.frame.height) * (1 - CGFloat(scaleValue) / CGFloat(maxValueOfScale))
                         scaleLabels.append(label)
                         verticalAxisView.addSubview(label)
                         scaleValue += verticalAxisScaleIncrement
                     }
                 }
                 
+                //calculate verticalAxis width
                 if verticalAxisScaleIncrement != nil {
                     var maxScaleLabelWidth = CGFloat.min
                     for label in scaleLabels {
@@ -133,10 +141,13 @@ class SODGraphViewWithAxis: UIView {
         for i in 0..<horizontalAxisLabels.count {
             horizontalAxisLabels[i].center.x = horizontalAxisView.frame.width * CGFloat(i * 2 + 1) / CGFloat(horizontalAxisLabelTexts.count * 2)
         }
+        
+        //draw axis lines
         horizontalAxisView.axisLine = SODHorizontalAxisLineView(frame: CGRectMake(0, 0, horizontalAxisView.frame.width, 1))
         horizontalAxisView.addSubview(horizontalAxisView.axisLine!)
         verticalAxisView.axisLine = SODVerticalAxisLineView(frame: CGRectMake(verticalAxisView.frame.width, 0, 1, verticalAxisView.frame.height))
         verticalAxisView.addSubview(verticalAxisView.axisLine!)
+        
         addSubview(horizontalAxisView)
         addSubview(graphView)
     }
