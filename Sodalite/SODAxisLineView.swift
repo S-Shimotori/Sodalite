@@ -21,7 +21,9 @@ class SODAxisLineView: UIView {
         if let lineColor = lineColor {
             self.lineColor = lineColor
         }
+        
         super.init(frame: frame)
+        backgroundColor = UIColor.clearColor()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -40,12 +42,13 @@ class SODHorizontalAxisLineView: SODAxisLineView {
     }
     
     override func drawRect(rect: CGRect) {
-        let context = UIGraphicsGetCurrentContext()
-        lineColor.set()
-        CGContextSetLineWidth(context, lineWidth)
-        CGContextMoveToPoint(context, 0, 0)
-        CGContextAddLineToPoint(context, rect.width, 0)
-        CGContextStrokePath(context)
+        let line = UIBezierPath()
+        line.moveToPoint(CGPointMake(0, 0));
+        line.addLineToPoint(CGPointMake(rect.width, 0));
+        lineColor.setStroke()
+        //will draw half width line if not multiply 2
+        line.lineWidth = lineWidth * 2
+        line.stroke();
     }
 }
 
@@ -60,11 +63,12 @@ class SODVerticalAxisLineView: SODAxisLineView {
     }
     
     override func drawRect(rect: CGRect) {
-        let context = UIGraphicsGetCurrentContext()
-        lineColor.set()
-        CGContextSetLineWidth(context, lineWidth)
-        CGContextMoveToPoint(context, rect.width, 0)
-        CGContextAddLineToPoint(context, rect.width, rect.height)
-        CGContextStrokePath(context)
+        let line = UIBezierPath()
+        line.moveToPoint(CGPointMake(0, 0));
+        line.addLineToPoint(CGPointMake(0, rect.height));
+        lineColor.setStroke()
+        //will draw half width line if not multiply 2
+        line.lineWidth = lineWidth * 2
+        line.stroke();
     }
 }
