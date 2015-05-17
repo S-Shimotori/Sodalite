@@ -34,6 +34,12 @@ class SODGraphViewWithAxis: UIView {
     }
     
     func drawScale() {
+        let axisLineWidth: CGFloat!
+        if let lineWidth = self.axisLineWidth where lineWidth > 0 {
+            axisLineWidth = lineWidth
+        } else {
+            axisLineWidth = SODAxisLineView.defaultLineWidth
+        }
         
         //to set label.frame after calculating verticalAxisView.frame
         var horizontalAxisLabels = [UILabel]()
@@ -42,47 +48,45 @@ class SODGraphViewWithAxis: UIView {
             let label = UILabel()
             label.attributedText = NSAttributedString(string: text, attributes: horizontalAxisAttributes)
             label.sizeToFit()
-            //set temporary x-coordinate
-            label.frame.origin.y = axisLineWidth ?? SODAxisLineView.defaultLineWidth
+            label.frame.origin.y = axisLineWidth
             
             horizontalAxisLabels.append(label)
             horizontalAxisView.addSubview(label)
         }
         horizontalAxisView.sizeToFitSubviews()
-        horizontalAxisView.frame.size.width += axisLineWidth ?? SODAxisLineView.defaultLineWidth
-        
+        horizontalAxisView.frame.size.width += axisLineWidth
         if hasVerticalAxis {
             var paddingTop: CGFloat?
             
             if hasVerticalAxisScale {
                 //set scale to vertical axis
-                
                 let maxValueOfData = maxElement(data)
+                let uIntMaxValueOfData = maxValueOfData > 0 ? maxValueOfData : 0
                 var scaleLabels = [UILabel]()
                 
-                if let verticalAxisScaleMax = verticalAxisScaleMax {
+                if let verticalAxisScaleMax = verticalAxisScaleMax where verticalAxisScaleMax > 0 {
                     //set max scale to vertical axis
                     let label = UILabel()
                     label.attributedText = NSAttributedString(string: "\(verticalAxisScaleMax)", attributes: verticalAxisAttributes)
                     label.sizeToFit()
-                    if maxValueOfData <= verticalAxisScaleMax {
+                    if uIntMaxValueOfData <= verticalAxisScaleMax {
                         label.frame.origin = CGPointMake(0, 0)
                         paddingTop = label.frame.height / 2
                     } else {
                         label.frame.origin.x = 0
-                        label.center.y = (frame.height - horizontalAxisView.frame.height) * (1 - CGFloat(verticalAxisScaleMax) / CGFloat(maxValueOfData))
+                        label.center.y = (frame.height - horizontalAxisView.frame.height) * (1 - CGFloat(verticalAxisScaleMax) / CGFloat(uIntMaxValueOfData))
                     }
                     scaleLabels.append(label)
                     verticalAxisView.addSubview(label)
                 }
                 
-                if let verticalAxisScaleIncrement = verticalAxisScaleIncrement {
+                if let verticalAxisScaleIncrement = verticalAxisScaleIncrement where verticalAxisScaleIncrement > 0 {
                     //set scale to vertical axis
                     let maxValueOfScale: Double!
                     if let verticalAxisScaleMax = verticalAxisScaleMax {
-                        maxValueOfScale = max(verticalAxisScaleMax, maxValueOfData)
+                        maxValueOfScale = max(verticalAxisScaleMax, uIntMaxValueOfData)
                     } else {
-                        maxValueOfScale = maxValueOfData
+                        maxValueOfScale = uIntMaxValueOfData
                     }
                     
                     var scaleValue = verticalAxisScaleIncrement
@@ -116,14 +120,14 @@ class SODGraphViewWithAxis: UIView {
             }
             verticalAxisView.sizeToFitSubviews()
             verticalAxisView.frame.origin = CGPointMake(0, 0)
-            verticalAxisView.frame.size.width += axisLineWidth ?? SODAxisLineView.defaultLineWidth
-            verticalAxisView.frame.size.height = frame.height - horizontalAxisView.frame.height + (axisLineWidth ?? SODAxisLineView.defaultLineWidth)
+            verticalAxisView.frame.size.width += axisLineWidth
+            verticalAxisView.frame.size.height = frame.height - horizontalAxisView.frame.height + axisLineWidth
             addSubview(verticalAxisView)
             
             verticalAxisView.axisLine = SODVerticalAxisLineView(frame: CGRectMake(
-                verticalAxisView.frame.width - (axisLineWidth ?? SODAxisLineView.defaultLineWidth),
+                verticalAxisView.frame.width - axisLineWidth,
                 paddingTop ?? 0,
-                axisLineWidth ?? SODAxisLineView.defaultLineWidth,
+                axisLineWidth,
                 verticalAxisView.frame.height - (paddingTop ?? 0)),
                 lineWidth: axisLineWidth, lineColor: axisLineColor
             )
@@ -165,7 +169,7 @@ class SODGraphViewWithAxis: UIView {
             0,
             0,
             horizontalAxisView.frame.width,
-            axisLineWidth ?? SODAxisLineView.defaultLineWidth),
+            axisLineWidth),
             lineWidth: axisLineWidth, lineColor: axisLineColor)
         horizontalAxisView.addSubview(horizontalAxisView.axisLine!)
         

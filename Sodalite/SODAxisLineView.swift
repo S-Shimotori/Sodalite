@@ -15,7 +15,7 @@ class SODAxisLineView: UIView {
     var lineColor = UIColor.blackColor()
 
     init(frame: CGRect, lineWidth: CGFloat?, lineColor: UIColor?) {
-        if let lineWidth = lineWidth {
+        if let lineWidth = lineWidth where lineWidth > 0 {
             self.lineWidth = lineWidth
         }
         if let lineColor = lineColor {
