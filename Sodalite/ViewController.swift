@@ -12,8 +12,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var sodaliteBarGraphView: SODBarGraphView!
 
-    let horizontalTexts = ["Sun", "Mon", "Tue"]
-    let data = [3.0, 8.0, 21.0]
+    let horizontalTexts = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+    let data = [1.0, 2.0, 3.0, 4.0, 10.0, 15.0, 20.0]
     
     override func viewDidLayoutSubviews() {
         sodaliteBarGraphView.data = data
@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         
         sodaliteBarGraphView.horizontalAxisLabelTexts = horizontalTexts
         sodaliteBarGraphView.horizontalAxisAttributes = [
-            NSFontAttributeName : UIFont.systemFontOfSize(15.0)
+            NSFontAttributeName : UIFont.systemFontOfSize(10.0)
         ]
         sodaliteBarGraphView.draw()
     }

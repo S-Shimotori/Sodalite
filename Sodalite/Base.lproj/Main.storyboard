@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7703" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7703" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9H-PQ-9mO" customClass="SODBarGraphView" customModule="Sodalite" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="600" height="200"/>
+                                <rect key="frame" x="100" y="20" width="400" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -26,7 +26,7 @@
                         <constraints>
                             <constraint firstItem="g9H-PQ-9mO" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="TE3-Rf-svf"/>
                             <constraint firstItem="g9H-PQ-9mO" firstAttribute="height" secondItem="kh9-bI-dsS" secondAttribute="height" multiplier="1:3" id="TSn-HW-pTO"/>
-                            <constraint firstItem="g9H-PQ-9mO" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" id="ZAD-1x-z2w"/>
+                            <constraint firstItem="g9H-PQ-9mO" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="2:3" id="ZAD-1x-z2w"/>
                             <constraint firstAttribute="centerX" secondItem="g9H-PQ-9mO" secondAttribute="centerX" id="eAI-ju-nB5"/>
                         </constraints>
                     </view>
