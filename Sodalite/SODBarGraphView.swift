@@ -67,8 +67,8 @@ class SODBarGraphView: SODGraphViewWithAxis {
                     barWidth,
                     rect.height * CGFloat(value / globalMaxValueInGraph)
                     ))
-                rectangle.fill()
                 barColor.setFill()
+                rectangle.fill()
             }
         }
     }
