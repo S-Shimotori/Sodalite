@@ -11,6 +11,7 @@ import UIKit
 class SODBarGraphView: SODGraphViewWithAxis {
     
     var barWidth: CGFloat?
+    var barColor: UIColor?
     
     override func draw() {
         super.draw()
@@ -19,7 +20,7 @@ class SODBarGraphView: SODGraphViewWithAxis {
             0,
             graphView.frame.width,
             graphView.frame.height
-            ), data: data, barWidth: barWidth, globalMaxValueInGraph: globalMaxValueInGraph)
+            ), data: data, barWidth: barWidth, barColor: barColor, globalMaxValueInGraph: globalMaxValueInGraph)
         bars.backgroundColor = .clearColor()
         graphView.addSubview(bars)
     }
@@ -27,9 +28,10 @@ class SODBarGraphView: SODGraphViewWithAxis {
     class Bars: UIView {
         var data = [Double]()
         var barWidth: CGFloat = 0
+        var barColor = UIColor.blackColor()
         var globalMaxValueInGraph: Double = 0
         
-        init(frame: CGRect, data: [Double], barWidth: CGFloat?, globalMaxValueInGraph: Double?) {
+        init(frame: CGRect, data: [Double], barWidth: CGFloat?, barColor: UIColor?, globalMaxValueInGraph: Double?) {
             self.data = data
             
             if let barWidth = barWidth where barWidth > 0 {
@@ -43,6 +45,10 @@ class SODBarGraphView: SODGraphViewWithAxis {
             } else {
                 let maxValueOfData = maxElement(data)
                 self.globalMaxValueInGraph = maxValueOfData > 0 ? maxValueOfData : 0
+            }
+            
+            if let barColor = barColor {
+                self.barColor = barColor
             }
             
             super.init(frame: frame)
@@ -61,8 +67,7 @@ class SODBarGraphView: SODGraphViewWithAxis {
                     rect.height * CGFloat(data[i] / globalMaxValueInGraph)
                     ))
                 rectangle.fill()
-                UIColor.blackColor().setFill()
-                rectangle.stroke()
+                barColor.setFill()
             }
         }
     }

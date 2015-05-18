@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         sodaliteBarGraphView.data = data
         
+        sodaliteBarGraphView.barColor = .grayColor()
+        
         sodaliteBarGraphView.axisLineWidth = 1
         sodaliteBarGraphView.axisLineColor = .blueColor()
         
