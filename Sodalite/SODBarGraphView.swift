@@ -60,11 +60,12 @@ class SODBarGraphView: SODGraphViewWithAxis {
         
         override func drawRect(rect: CGRect) {
             for i in 0..<data.count {
+                let value = data[i] > 0 ? data[i] : 0
                 let rectangle = UIBezierPath(rect: CGRectMake(
                     rect.width * CGFloat(i * 2 + 1) / CGFloat(data.count * 2) - barWidth / 2,
-                    rect.height * CGFloat(1 - data[i] / globalMaxValueInGraph),
+                    rect.height * CGFloat(1 - value / globalMaxValueInGraph),
                     barWidth,
-                    rect.height * CGFloat(data[i] / globalMaxValueInGraph)
+                    rect.height * CGFloat(value / globalMaxValueInGraph)
                     ))
                 rectangle.fill()
                 barColor.setFill()
