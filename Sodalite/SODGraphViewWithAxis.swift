@@ -25,8 +25,6 @@ class SODGraphViewWithAxis: SODGraphView {
     var horizontalAxisLabelTexts = [String]()
     var horizontalAxisAttributes = [NSObject : AnyObject]()
     
-    var globalMaxValueInGraph: Double?
-    
     func drawScale() {
         let axisLineWidth: CGFloat!
         if let lineWidth = self.axisLineWidth where lineWidth > 0 {
@@ -66,11 +64,9 @@ class SODGraphViewWithAxis: SODGraphView {
                     if uIntMaxValueOfData <= verticalAxisScaleMax {
                         label.frame.origin = CGPointMake(0, 0)
                         paddingTop = label.frame.height / 2
-                        globalMaxValueInGraph = verticalAxisScaleMax
                     } else {
                         label.frame.origin.x = 0
                         label.center.y = (frame.height - horizontalAxisView.frame.height) * (1 - CGFloat(verticalAxisScaleMax) / CGFloat(uIntMaxValueOfData))
-                        globalMaxValueInGraph = uIntMaxValueOfData
                     }
                     scaleLabels.append(label)
                     verticalAxisView.addSubview(label)
@@ -177,4 +173,14 @@ class SODGraphViewWithAxis: SODGraphView {
         drawScale()
     }
 
+    func globalMaxValueInGraph() -> Double {
+        var values = [Double]()
+        values += data
+        values.append(0)
+        if let verticalAxisScaleMax = verticalAxisScaleMax {
+            values.append(verticalAxisScaleMax)
+        }
+        
+        return maxElement(values)
+    }
 }

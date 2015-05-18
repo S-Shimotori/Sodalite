@@ -20,7 +20,7 @@ class SODBarGraphView: SODGraphViewWithAxis {
             0,
             graphView.frame.width,
             graphView.frame.height
-            ), data: data, barWidth: barWidth, barColor: barColor, globalMaxValueInGraph: globalMaxValueInGraph)
+            ), data: data, barWidth: barWidth, barColor: barColor, globalMaxValueInGraph: globalMaxValueInGraph())
         bars.backgroundColor = .clearColor()
         graphView.addSubview(bars)
     }
@@ -31,7 +31,7 @@ class SODBarGraphView: SODGraphViewWithAxis {
         var barColor = UIColor.blackColor()
         var globalMaxValueInGraph: Double = 0
         
-        init(frame: CGRect, data: [Double], barWidth: CGFloat?, barColor: UIColor?, globalMaxValueInGraph: Double?) {
+        init(frame: CGRect, data: [Double], barWidth: CGFloat?, barColor: UIColor?, globalMaxValueInGraph: Double) {
             self.data = data
             
             if let barWidth = barWidth where barWidth > 0 {
@@ -40,16 +40,11 @@ class SODBarGraphView: SODGraphViewWithAxis {
                 self.barWidth = frame.width / CGFloat(data.count * 2)
             }
             
-            if let globalMaxValueInGraph = globalMaxValueInGraph {
-                self.globalMaxValueInGraph = globalMaxValueInGraph > 0 ? globalMaxValueInGraph : 0
-            } else {
-                let maxValueOfData = maxElement(data)
-                self.globalMaxValueInGraph = maxValueOfData > 0 ? maxValueOfData : 0
-            }
-            
             if let barColor = barColor {
                 self.barColor = barColor
             }
+            
+            self.globalMaxValueInGraph = globalMaxValueInGraph
             
             super.init(frame: frame)
         }
