@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         sodaliteBarGraphView.barColor = .grayColor()
         
         sodaliteBarGraphView.axisLineWidth = 1
-        sodaliteBarGraphView.axisLineColor = .blueColor()
+        sodaliteBarGraphView.axisLineColor = .blackColor()
         
         sodaliteBarGraphView.hasVerticalAxis = true
         sodaliteBarGraphView.hasVerticalAxisScale = false
