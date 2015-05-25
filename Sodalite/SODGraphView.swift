@@ -10,12 +10,12 @@ import UIKit
 
 class SODGraphView: UIView {
 
-    var graphView = UIView()
+    let graphView = UIView()
 
     //data to draw graph
     var data = [Double]()
     
-    func resetView() {
+    private func resetView() {
         subviews.map{$0.removeFromSuperview()}
     }
     

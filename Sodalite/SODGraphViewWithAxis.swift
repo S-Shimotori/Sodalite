@@ -11,11 +11,11 @@ import UIKit
 class SODGraphViewWithAxis: SODGraphView {
 
     //contains axises
-    var verticalAxisView = SODAxisView()
-    var horizontalAxisView = SODAxisView()
+    let verticalAxisView = SODAxisView()
+    let horizontalAxisView = SODAxisView()
 
     //contains horizontal lines under graphView
-    var horizontalScaleLinesView = SODHorizontalScaleLinesView()
+    private let horizontalScaleLinesView = SODHorizontalScaleLinesView()
     
     var axisLineWidth: CGFloat?
     var axisLineColor: UIColor?
