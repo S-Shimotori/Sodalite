@@ -35,6 +35,10 @@ class ViewController: UIViewController {
         sodaliteBarGraphView.horizontalAxisAttributes = [
             NSFontAttributeName : UIFont.systemFontOfSize(10.0)
         ]
+        
+        sodaliteBarGraphView.horizontalScaleLinesConstant = [20]
+        sodaliteBarGraphView.horizontalScaleLinesIncrement = 6
+        sodaliteBarGraphView.horizontalScaleLinesWidth = 1
         sodaliteBarGraphView.draw()
     }
 

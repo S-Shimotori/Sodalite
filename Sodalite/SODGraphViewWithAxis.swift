@@ -13,6 +13,9 @@ class SODGraphViewWithAxis: SODGraphView {
     //contains axises
     var verticalAxisView = SODAxisView()
     var horizontalAxisView = SODAxisView()
+
+    //contains horizontal lines under graphView
+    var horizontalScaleLinesView = SODHorizontalScaleLinesView()
     
     var axisLineWidth: CGFloat?
     var axisLineColor: UIColor?
@@ -24,7 +27,13 @@ class SODGraphViewWithAxis: SODGraphView {
     
     var horizontalAxisLabelTexts = [String]()
     var horizontalAxisAttributes = [NSObject : AnyObject]()
-    
+   
+    var hasHorizontalScaleLines = true
+    var horizontalScaleLinesConstant = [Double]()
+    var horizontalScaleLinesIncrement: Double?
+    var horizontalScaleLinesWidth: CGFloat?
+    var horizontalScaleLinesColor: UIColor?
+
     func drawScale() {
         let axisLineWidth: CGFloat!
         if let lineWidth = self.axisLineWidth where lineWidth > 0 {
@@ -151,6 +160,30 @@ class SODGraphViewWithAxis: SODGraphView {
                 frame.height - horizontalAxisView.frame.height
             )
         }
+
+        horizontalScaleLinesView.backgroundColor = .clearColor()
+        horizontalScaleLinesView.frame = graphView.frame
+        horizontalScaleLinesView.globalMaxValueInGraph = globalMaxValueInGraph()
+        if let horizontalScaleLinesWidth = horizontalScaleLinesWidth where horizontalScaleLinesWidth > 0 {
+            horizontalScaleLinesView.lineWidth = horizontalScaleLinesWidth
+        }
+        if let horizontalScaleLinesColor = horizontalScaleLinesColor {
+            horizontalScaleLinesView.lineColor = horizontalScaleLinesColor
+        }
+
+        var horizontalScaleLinesValue = horizontalScaleLinesConstant
+        if let horizontalScaleLinesIncrement = horizontalScaleLinesIncrement where horizontalScaleLinesIncrement > 0 {
+            var scaleValue = horizontalScaleLinesIncrement
+            
+            while scaleValue < globalMaxValueInGraph() {
+                horizontalScaleLinesValue.append(scaleValue)
+                scaleValue += horizontalScaleLinesIncrement
+            }
+        }
+        horizontalScaleLinesView.data = horizontalScaleLinesValue
+        addSubview(horizontalScaleLinesView)
+        sendSubviewToBack(horizontalScaleLinesView)
+
         
         for i in 0..<horizontalAxisLabels.count {
             horizontalAxisLabels[i].center.x = horizontalAxisView.frame.width * CGFloat(i * 2 + 1) / CGFloat(horizontalAxisLabelTexts.count * 2)
@@ -182,5 +215,26 @@ class SODGraphViewWithAxis: SODGraphView {
         }
         
         return maxElement(values)
+    }
+    
+    class SODHorizontalScaleLinesView: UIView {
+        var lineWidth: CGFloat = 1
+        var lineColor = UIColor.blackColor()
+        var data = [Double]()
+        var globalMaxValueInGraph: Double = 0
+        override func drawRect(rect: CGRect) {
+            backgroundColor = .clearColor()
+            lineColor.setStroke()
+            for value in data {
+                if 0 < value && value <= globalMaxValueInGraph {
+                    let line = UIBezierPath()
+                    let y = rect.height * CGFloat(1 - value / globalMaxValueInGraph)
+                    line.moveToPoint(CGPointMake(0, y))
+                    line.addLineToPoint(CGPointMake(rect.width, y))
+                    line.lineWidth = lineWidth
+                    line.stroke();
+                }
+            }
+        }
     }
 }
