@@ -82,7 +82,7 @@ class SODGraphViewWithAxis: SODGraphView {
     var horizontalAxisLabelTexts = [String]()
     var horizontalAxisScaleLabelTextAttributes = [NSObject : AnyObject]()
    
-    var hasHorizontalScaleLines = true
+    var hasVerticalAxisScaleLines = true
 
     func drawScale() {
         
@@ -210,7 +210,9 @@ class SODGraphViewWithAxis: SODGraphView {
         linesUnderGraphView.globalMaxValueInGraph = globalMaxValueInGraph()
 
         linesUnderGraphView.targetValues = valuesOfVerticalAxisTargetLines
-        linesUnderGraphView.incrementValue = incrementOfVerticalAxisScale
+        if hasVerticalAxisScaleLines {
+            linesUnderGraphView.incrementValue = incrementOfVerticalAxisScale
+        }
         addSubview(linesUnderGraphView)
         sendSubviewToBack(linesUnderGraphView)
 

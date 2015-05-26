@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         sodaliteBarGraphView.axisLinesColor = .blackColor()
         
         sodaliteBarGraphView.hasVerticalAxis = true
-        sodaliteBarGraphView.hasVerticalAxisScaleLabels = false
+        sodaliteBarGraphView.hasVerticalAxisScaleLabels = true
         sodaliteBarGraphView.verticalAxisScaleLabelTextAttributes = [
             NSFontAttributeName : UIFont.systemFontOfSize(10.0)
         ]
@@ -35,7 +35,8 @@ class ViewController: UIViewController {
         sodaliteBarGraphView.horizontalAxisScaleLabelTextAttributes = [
             NSFontAttributeName : UIFont.systemFontOfSize(10.0)
         ]
-        
+
+        sodaliteBarGraphView.hasVerticalAxisScaleLines = false
         sodaliteBarGraphView.valuesOfVerticalAxisTargetLines = [20]
         sodaliteBarGraphView.verticalAxisScaleLinesWidth = 1
         sodaliteBarGraphView.draw()
