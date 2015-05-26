@@ -37,8 +37,26 @@ class SODGraphViewWithAxis: SODGraphView {
     var incrementOfVerticalAxisScale: Double?
 
     var constantValuesOfVerticalAxisScaleLines = [Double]()
-    var verticalAxisScaleLinesWidth: CGFloat?
-    var verticalAxisScaleLinesColor: UIColor?
+    var verticalAxisScaleLinesWidth: CGFloat {
+        get {
+            return linesUnderGraphView.lineWidth
+        }
+        set(newValue) {
+            if newValue >= 0 {
+                linesUnderGraphView.lineWidth = newValue
+            } else {
+                println("invalid verticalAxisScaleLinesWidth: negative values are not allowed.")
+            }
+        }
+    }
+    var verticalAxisScaleLinesColor: UIColor {
+        get {
+            return linesUnderGraphView.lineColor
+        }
+        set(newValue) {
+            linesUnderGraphView.lineColor = newValue
+        }
+    }
     var verticalAxisScaleLabelTextAttributes = [NSObject : AnyObject]()
     
     var horizontalAxisLabelTexts = [String]()
@@ -171,12 +189,6 @@ class SODGraphViewWithAxis: SODGraphView {
         linesUnderGraphView.backgroundColor = .clearColor()
         linesUnderGraphView.frame = graphView.frame
         linesUnderGraphView.globalMaxValueInGraph = globalMaxValueInGraph()
-        if let verticalAxisScaleLinesWidth = verticalAxisScaleLinesWidth where verticalAxisScaleLinesWidth > 0 {
-            linesUnderGraphView.lineWidth = verticalAxisScaleLinesWidth
-        }
-        if let verticalAxisScaleLinesColor = verticalAxisScaleLinesColor {
-            linesUnderGraphView.lineColor = verticalAxisScaleLinesColor
-        }
 
         var horizontalScaleLinesValue = constantValuesOfVerticalAxisScaleLines
         if let horizontalScaleLinesIncrement = horizontalScaleLinesIncrement where horizontalScaleLinesIncrement > 0 {
