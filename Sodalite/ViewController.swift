@@ -20,25 +20,25 @@ class ViewController: UIViewController {
         
         sodaliteBarGraphView.barColor = .grayColor()
         
-        sodaliteBarGraphView.axisLineWidth = 1
-        sodaliteBarGraphView.axisLineColor = .blackColor()
+        sodaliteBarGraphView.axisLinesWidth = 1
+        sodaliteBarGraphView.axisLinesColor = .blackColor()
         
         sodaliteBarGraphView.hasVerticalAxis = true
-        sodaliteBarGraphView.hasVerticalAxisScale = false
-        sodaliteBarGraphView.verticalAxisAttributes = [
+        sodaliteBarGraphView.hasVerticalAxisScaleLabels = false
+        sodaliteBarGraphView.verticalAxisScaleLabelTextAttributes = [
             NSFontAttributeName : UIFont.systemFontOfSize(10.0)
         ]
-        sodaliteBarGraphView.verticalAxisScaleMax = 24
-        sodaliteBarGraphView.verticalAxisScaleIncrement = 6
+        sodaliteBarGraphView.maxValueOfVerticalAxisScale = 24
+        sodaliteBarGraphView.incrementOfVerticalAxisScale = 6
         
         sodaliteBarGraphView.horizontalAxisLabelTexts = horizontalTexts
-        sodaliteBarGraphView.horizontalAxisAttributes = [
+        sodaliteBarGraphView.horizontalAxisScaleLabelTextAttributes = [
             NSFontAttributeName : UIFont.systemFontOfSize(10.0)
         ]
         
-        sodaliteBarGraphView.horizontalScaleLinesConstant = [20]
+        sodaliteBarGraphView.constantValuesOfVerticalAxisScaleLines = [20]
         sodaliteBarGraphView.horizontalScaleLinesIncrement = 6
-        sodaliteBarGraphView.horizontalScaleLinesWidth = 1
+        sodaliteBarGraphView.verticalAxisScaleLinesWidth = 1
         sodaliteBarGraphView.draw()
     }
 
