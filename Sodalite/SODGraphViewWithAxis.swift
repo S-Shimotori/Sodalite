@@ -36,14 +36,14 @@ class SODGraphViewWithAxis: SODGraphView {
     var maxValueOfVerticalAxisScale: Double?
     var incrementOfVerticalAxisScale: Double?
 
-    var constantValuesOfVerticalAxisScaleLines = [Double]()
+    var valuesOfVerticalAxisTargetLines = [Double]()
     var verticalAxisScaleLinesWidth: CGFloat {
         get {
-            return linesUnderGraphView.lineWidth
+            return linesUnderGraphView.incrementScaleLinesWidth
         }
         set(newValue) {
             if newValue >= 0 {
-                linesUnderGraphView.lineWidth = newValue
+                linesUnderGraphView.incrementScaleLinesWidth = newValue
             } else {
                 println("invalid verticalAxisScaleLinesWidth: negative values are not allowed.")
             }
@@ -51,10 +51,30 @@ class SODGraphViewWithAxis: SODGraphView {
     }
     var verticalAxisScaleLinesColor: UIColor {
         get {
-            return linesUnderGraphView.lineColor
+            return linesUnderGraphView.incrementScaleLinesColor
         }
         set(newValue) {
-            linesUnderGraphView.lineColor = newValue
+            linesUnderGraphView.incrementScaleLinesColor = newValue
+        }
+    }
+    var verticalAxisTargetLinesWidth: CGFloat {
+        get {
+            return linesUnderGraphView.targetLinesWidth
+        }
+        set(newValue) {
+            if newValue >= 0 {
+                linesUnderGraphView.targetLinesWidth = newValue
+            } else {
+                println("invalid verticalAxisTargetLinesWidth: negative values are not allowed.")
+            }
+        }
+    }
+    var verticalAxisTargetLinesColor: UIColor {
+        get {
+            return linesUnderGraphView.targetLinesColor
+        }
+        set(newValue) {
+            linesUnderGraphView.targetLinesColor = newValue
         }
     }
     var verticalAxisScaleLabelTextAttributes = [NSObject : AnyObject]()
@@ -63,7 +83,6 @@ class SODGraphViewWithAxis: SODGraphView {
     var horizontalAxisScaleLabelTextAttributes = [NSObject : AnyObject]()
    
     var hasHorizontalScaleLines = true
-    var horizontalScaleLinesIncrement: Double?
 
     func drawScale() {
         
@@ -190,16 +209,8 @@ class SODGraphViewWithAxis: SODGraphView {
         linesUnderGraphView.frame = graphView.frame
         linesUnderGraphView.globalMaxValueInGraph = globalMaxValueInGraph()
 
-        var horizontalScaleLinesValue = constantValuesOfVerticalAxisScaleLines
-        if let horizontalScaleLinesIncrement = horizontalScaleLinesIncrement where horizontalScaleLinesIncrement > 0 {
-            var scaleValue = horizontalScaleLinesIncrement
-            
-            while scaleValue < globalMaxValueInGraph() {
-                horizontalScaleLinesValue.append(scaleValue)
-                scaleValue += horizontalScaleLinesIncrement
-            }
-        }
-        linesUnderGraphView.data = horizontalScaleLinesValue
+        linesUnderGraphView.targetValues = valuesOfVerticalAxisTargetLines
+        linesUnderGraphView.incrementValue = incrementOfVerticalAxisScale
         addSubview(linesUnderGraphView)
         sendSubviewToBack(linesUnderGraphView)
 
@@ -237,20 +248,42 @@ class SODGraphViewWithAxis: SODGraphView {
     }
     
     class SODLinesUnderGraphView: UIView {
-        var lineWidth: CGFloat = 1
-        var lineColor = UIColor.blackColor()
-        var data = [Double]()
+        var incrementScaleLinesWidth: CGFloat = 1
+        var incrementScaleLinesColor = UIColor.blackColor()
+        var incrementValue: Double?
+        var targetLinesWidth: CGFloat = 1
+        var targetLinesColor = UIColor.redColor()
+        var targetValues = [Double]()
         var globalMaxValueInGraph: Double = 0
+
         override func drawRect(rect: CGRect) {
             backgroundColor = .clearColor()
-            lineColor.setStroke()
-            for value in data {
+
+            //increment
+            if let incrementValue = incrementValue {
+                incrementScaleLinesColor.setStroke()
+
+                var value = incrementValue
+                while value < globalMaxValueInGraph {
+                    let line = UIBezierPath()
+                    let y = rect.height * CGFloat(1 - value / globalMaxValueInGraph)
+                    line.moveToPoint(CGPointMake(0, y))
+                    line.addLineToPoint(CGPointMake(rect.width, y))
+                    line.lineWidth = incrementScaleLinesWidth
+                    line.stroke()
+                    value += incrementValue
+                }
+            }
+
+            //target
+            targetLinesColor.setStroke()
+            for value in targetValues {
                 if 0 < value && value <= globalMaxValueInGraph {
                     let line = UIBezierPath()
                     let y = rect.height * CGFloat(1 - value / globalMaxValueInGraph)
                     line.moveToPoint(CGPointMake(0, y))
                     line.addLineToPoint(CGPointMake(rect.width, y))
-                    line.lineWidth = lineWidth
+                    line.lineWidth = targetLinesWidth
                     line.stroke();
                 }
             }
